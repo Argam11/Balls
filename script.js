@@ -16,9 +16,11 @@ function f() {
   y = y + yStep;
 
   if (x >= canvas.width - radius || x <= radius) {
+    x += xStep < 0 ? radius - x : -(radius + x - canvas.width);
     xStep = Math.round(Math.random() * 5 + 5) * (xStep > 0 ? -1 : 1);
   }
   if (y >= canvas.height - radius || y <= radius) {
+    y += yStep < 0 ? radius - y : -(radius + y - canvas.height);
     yStep = Math.round(Math.random() * 5 + 5) * (yStep > 0 ? -1 : 1);
   }
 
@@ -29,7 +31,13 @@ function f() {
   ctx.fillStyle = "green";
   ctx.fill();
 
-  requestAnimationFrame(f);
+  !isStop && requestAnimationFrame(f);
 }
 
+var isStop = false;
 requestAnimationFrame(f);
+
+function stop() {
+  isStop = !isStop;
+  !isStop && requestAnimationFrame(f);
+}

@@ -14,10 +14,18 @@
       canvas {
         position: absolute;
       }
+      button {
+        margin-top: 200px;
+        position: relative;
+        z-index: 11;
+        padding: 10px;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
     <canvas id="canvas"></canvas>
+    <button onclick="stop()">Stop</button>
     <script src="./script.js"></script>
   </body>
 </html>
